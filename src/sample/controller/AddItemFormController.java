@@ -3,9 +3,13 @@ package sample.controller;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.ResourceBundle;
+
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.util.Duration;
 import sample.Database.DatabaseHandler;
 import sample.model.Task;
 
@@ -17,12 +21,6 @@ public class AddItemFormController {
     private DatabaseHandler databaseHandler;
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private TextField taskField;
 
     @FXML
@@ -32,7 +30,14 @@ public class AddItemFormController {
     private Button saveTaskButton;
 
     @FXML
+    private Label successLabel;
+
+    @FXML
+    private Button todosButton;
+
+    @FXML
     void initialize() {
+
         databaseHandler = new DatabaseHandler();
         saveTaskButton.setOnAction(event -> {
             Task task = new Task();
@@ -53,22 +58,31 @@ public class AddItemFormController {
                 task.setTask(taskText);
 
                 databaseHandler.insertTask(task);
-                System.out.println("Task added!");
+
+                successLabel.setVisible(true);
+
+                FadeTransition ft = new FadeTransition(Duration.millis(2000), successLabel);
+                ft.setFromValue(1.0);
+                ft.setToValue(0);
+                ft.setCycleCount(1);
+                ft.setAutoReverse(true);
+
+                ft.play();
+
+                todosButton.setVisible(true);
+                int taskNumber = 3;
+                todosButton.setText("My Todo's: " + taskNumber);
+
+                taskField.setText("");
+                descriptionField.setText("");
+
+                todosButton.setOnAction(event1 -> {
+                    //send users to list screen
+                    System.out.println("Going to list screen");
+                });
             }else {
                 System.out.println("Fields are blank!");
             }
-
         });
-
     }
-//    public int getUserId() {
-//        System.out.println("AddItemFormController return userID "+ userId);//this is returning 0!!!!
-//        return this.userId;
-//    }
-//
-//    public void setUserId(int id) {
-//        this.userId = id;
-//        System.out.println("AddItemFormController set userID "+ this.userId);//this is returning the proper id
-//    }
-
 }
