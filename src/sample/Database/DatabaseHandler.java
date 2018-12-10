@@ -69,6 +69,26 @@ public class DatabaseHandler extends Configs{
         return resultSet;
     }
 
+    public int getAllTasks(int userID) throws SQLException, ClassNotFoundException {
+
+        String query = "SELECT COUNT(*) FROM " + Const.TASKS_TABLE + " WHERE "
+                + Const.USERS_ID + "=?";
+        System.out.println(query);
+
+
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+            preparedStatement.setInt(1, userID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                return resultSet.getInt(1);
+            }
+
+
+        return resultSet.getInt(1);
+
+    }
+
     public void insertTask(Task task){
         String insert = "INSERT INTO " + Const.TASKS_TABLE + "(" + Const.TASKS_USERID + ","
                 + Const.TASKS_TASK + "," +Const.TASKS_DATE + "," + Const.TASKS_DESCRIPTION + ") VALUES(?,?,?,?)";

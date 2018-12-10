@@ -1,6 +1,7 @@
 package sample.controller;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
@@ -70,7 +71,14 @@ public class AddItemFormController {
                 ft.play();
 
                 todosButton.setVisible(true);
-                int taskNumber = 3;
+                int taskNumber = 0;
+                try {
+                    taskNumber = databaseHandler.getAllTasks(AddItemController.userId);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
                 todosButton.setText("My Todo's: " + taskNumber);
 
                 taskField.setText("");
