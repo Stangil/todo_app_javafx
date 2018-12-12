@@ -19,15 +19,7 @@ public class AddItemController {
     public static int userId;
 
     @FXML
-    private ResourceBundle resources;
-
-
-    @FXML
     private AnchorPane rootAnchorPane;
-
-
-    @FXML
-    private URL location;
 
     @FXML
     private ImageView addButton;

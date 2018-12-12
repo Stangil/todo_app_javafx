@@ -1,28 +1,19 @@
 package sample.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
+import sample.model.Task;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class ListController {
 
-    @FXML
-    private ResourceBundle resources;
 
     @FXML
-    private URL location;
-
-    @FXML
-    private ListView<String> listTask;
+    private ListView<Task> listTask;
 
     @FXML
     private TextField listTaskField;
@@ -33,57 +24,29 @@ public class ListController {
     @FXML
     private Button listSaveTaskButton;
 
-    ObservableList<String> listView = FXCollections.observableArrayList(
-            "Gred",
-            "Smooty",
-            "Gondor",
-            "Massey",
-            "Gred",
-            "Smooty",
-            "Gondor",
-            "Massey",
-            "Gred",
-            "Smooty",
-            "Gondor",
-            "Massey",
-            "Gred",
-            "Smooty",
-            "Gondor",
-            "Massey"
-    );
+    private ObservableList<Task> tasks;
 
     @FXML
     void initialize() {
-        listTask.setItems(listView);
-        listTask.setCellFactory(param -> new Cell());
-    }
+        Task myTask = new Task();
+        myTask.setTask("Eat lunch");
+        myTask.setDescription("Go to Wendy's");
+        myTask.setDateCreated(Timestamp.valueOf(LocalDateTime.now()));
 
-    static class Cell extends ListCell<String> {
-        //Hbox = Horizontal box
-        HBox hBox = new HBox();
-        Button helloButton = new Button("Hello");
-        Label task = new Label();
+        Task myTask2 = new Task();
+        myTask2.setTask("Eat dinner");
+        myTask2.setDescription("Go to Burger's");
+        myTask2.setDateCreated(Timestamp.valueOf(LocalDateTime.now()));
 
-        Pane pane = new Pane();
 
-        Image icon = new Image("/sample/assets/add_icon.png");
-        ImageView iconImg = new ImageView(icon);
+        tasks = FXCollections.observableArrayList();
+        tasks.addAll(myTask, myTask2);
 
-        public Cell() {
-            super();
-            hBox.getChildren().addAll(iconImg, task, helloButton);
-            hBox.setHgrow(pane, Priority.ALWAYS);
-        }
+        listTask.setItems(tasks);
+        listTask.setCellFactory(CellController -> new CellController());
 
-        public void updateItem(String taskName, boolean empty) {
-            super.updateItem(taskName, empty);
-            setText(null);
-            setGraphic(null);
-            if (taskName != null && !empty) {
-                task.setText(taskName);
-                setGraphic(hBox);
-            }
-        }
+
     }
 }
+
 

@@ -18,12 +18,12 @@
             </Label>
          </children>
       </AnchorPane>
-      <ListView fx:id="listTask" layoutX="426.0" layoutY="89.0" prefHeight="305.0" prefWidth="279.0" style="-fx-background-color: #ffffff;" />
-      <AnchorPane layoutX="6.0" layoutY="89.0" prefHeight="305.0" prefWidth="414.0" style="-fx-background-color: #ffffff;">
+      <ListView fx:id="listTask" layoutX="293.0" layoutY="89.0" prefHeight="305.0" prefWidth="414.0" style="-fx-background-color: #ffffff;" />
+      <AnchorPane layoutX="6.0" layoutY="89.0" prefHeight="305.0" prefWidth="283.0" style="-fx-background-color: #ffffff;">
          <children>
-            <TextField fx:id="listTaskField" alignment="TOP_LEFT" layoutX="28.0" layoutY="69.0" prefHeight="45.0" prefWidth="360.0" promptText="Task:" />
-            <TextField fx:id="listDescriptionField" alignment="TOP_LEFT" layoutX="28.0" layoutY="147.0" prefHeight="45.0" prefWidth="360.0" promptText="Description:" />
-            <Button fx:id="listSaveTaskButton" alignment="CENTER" layoutX="158.0" layoutY="231.0" mnemonicParsing="false" text="Save Task">
+            <TextField fx:id="listTaskField" alignment="TOP_LEFT" layoutX="28.0" layoutY="69.0" prefHeight="45.0" prefWidth="215.0" promptText="Task:" />
+            <TextField fx:id="listDescriptionField" alignment="TOP_LEFT" layoutX="28.0" layoutY="147.0" prefHeight="45.0" prefWidth="215.0" promptText="Description:" />
+            <Button fx:id="listSaveTaskButton" alignment="CENTER" layoutX="85.0" layoutY="226.0" mnemonicParsing="false" text="Save Task">
                <font>
                   <Font size="18.0" />
                </font>
