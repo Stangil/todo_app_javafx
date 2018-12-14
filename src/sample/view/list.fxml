@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -14,6 +16,16 @@
             <Label alignment="CENTER" layoutX="264.0" layoutY="15.0" text="My TODO's">
                <font>
                   <Font size="36.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="listRefreshButton" fitHeight="39.0" fitWidth="41.0" layoutX="650.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/synchronize.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="585.0" layoutY="28.0" text="Refresh">
+               <font>
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
          </children>

@@ -9,9 +9,9 @@
 
 <AnchorPane fx:id="rootAnchorPane" prefHeight="100.0" prefWidth="380.0" style="-fx-background-color: #00acc1;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="iconImageView" fitHeight="45.0" fitWidth="45.0" layoutX="14.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="iconImageView" fitHeight="35.0" fitWidth="35.0" layoutX="15.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/add_icon.png" />
+            <Image url="@../assets/todo-list.png" />
          </image>
       </ImageView>
       <Label fx:id="taskLabel" layoutX="64.0" layoutY="13.0" prefHeight="26.0" prefWidth="251.0" style="-fx-background-color: #5ddef4;" text="Task">
@@ -31,9 +31,9 @@
          </padding>
       </Label>
       <Label fx:id="dateCreatedLabel" layoutX="272.0" layoutY="80.0" prefHeight="17.0" prefWidth="103.0" text="Date Created" textFill="#0b00ff" />
-      <ImageView fx:id="deleteButton" fitHeight="45.0" fitWidth="45.0" layoutX="328.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="deleteButton" fitHeight="35.0" fitWidth="35.0" layoutX="331.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/add_icon.png" />
+            <Image url="@../assets/trash.png" />
          </image>
       </ImageView>
    </children>

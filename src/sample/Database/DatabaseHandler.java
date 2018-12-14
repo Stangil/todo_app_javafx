@@ -18,11 +18,21 @@ public class DatabaseHandler extends Configs{
 
         return dbConnection;
     }
+    //Delete task
+    public void deleteTask(int userId, int taskId) throws SQLException, ClassNotFoundException{
+        String query = "DELETE FROM " + Const.TASKS_TABLE + " WHERE " + Const.TASKS_USERID + "=? AND " + Const.TASKS_ID + "=?";
+        System.out.println(query);
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement((query));
+        preparedStatement.setInt(1, userId);
+        preparedStatement.setInt(2, taskId);
+        preparedStatement.execute();
+        preparedStatement.close();
+
+    }
 
     //Write
     public void signUpUser(User user){
 
-        //System.out.println("______________ "+firstName+" "+lastName+" "+userName+" "+password+" "+location+" "+gender);
         String insert = "INSERT INTO " + Const.USERS_TABLE + "(" + Const.USERS_FIRSTNAME
                 + "," + Const.USERS_LASTNAME + "," +Const.USERS_USERNAME + "," + Const.USERS_PASSWORD + ","
                 + Const.USERS_LOCATION + "," + Const.USERS_GENDER + ") VALUES(?,?,?,?,?,?)";
@@ -39,11 +49,25 @@ public class DatabaseHandler extends Configs{
 
             preparedStatement.executeUpdate();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public ResultSet getTasksByUser(int UserId){
+        ResultSet resultTasks = null;
+        String query = "SELECT * FROM " + Const.TASKS_TABLE + " WHERE "
+                + Const.USERS_ID  + "=?";
+
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = getDbConnection().prepareStatement(query);
+            preparedStatement.setInt(1,UserId);
+            resultTasks = preparedStatement.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultTasks;
     }
 
     public ResultSet getUser(User user){
@@ -57,9 +81,7 @@ public class DatabaseHandler extends Configs{
                 preparedStatement.setString(1,user.getUserName());
                 preparedStatement.setString(2,user.getPassword());
                 resultSet = preparedStatement.executeQuery();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }else{
@@ -104,9 +126,7 @@ public class DatabaseHandler extends Configs{
 
             preparedStatement.executeUpdate();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

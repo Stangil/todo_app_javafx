@@ -18,6 +18,8 @@ public class AddItemController {
 
     public static int userId;
 
+    public static int taskId = 19;
+
     @FXML
     private AnchorPane rootAnchorPane;
 
@@ -40,11 +42,8 @@ public class AddItemController {
             try {
                 AnchorPane formPane = FXMLLoader.load(getClass().getResource("/sample/view/addItemForm.fxml"));
 
-
-//                AddItemFormController addItemFormController = new AddItemFormController();
-//                addItemFormController.setUserId(getUserId());
-
                 AddItemController.userId = getUserId();
+                AddItemController.taskId = getTaskId();
 
                 FadeTransition rootTransition = new FadeTransition(Duration.millis(2000), formPane);
                 rootTransition.setFromValue(0f);
@@ -58,6 +57,10 @@ public class AddItemController {
                 e.printStackTrace();
             }
         });
+    }
+
+    private int getTaskId() {
+        return taskId;
     }
 
     public void setUserId(int userId) {

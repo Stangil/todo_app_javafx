@@ -1,15 +1,17 @@
 package sample.controller;
 
-import java.net.URL;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Calendar;
-import java.util.ResourceBundle;
-
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import sample.Database.DatabaseHandler;
 import sample.model.Task;
@@ -86,7 +88,21 @@ public class AddItemFormController {
 
                 todosButton.setOnAction(event1 -> {
                     //send users to list screen
-                    System.out.println("Going to list screen");
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/sample/view/list.fxml"));
+
+                    try {
+                        loader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    Parent root = loader.getRoot();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.showAndWait();
+
+
                 });
             }else {
                 System.out.println("Fields are blank!");
